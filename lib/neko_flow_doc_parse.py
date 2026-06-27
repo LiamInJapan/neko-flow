@@ -12,7 +12,7 @@ flow_modes.txt format:
   @TASKS Tasks
 
 Contextual buttons (on substate line, stripped from label/description in the widget):
-  [NekoConfidential]  [ContractBoard]  — wired in flow_button_actions.sh (+ flow_launch_overrides.sh URLs)
+  [ButtonId]  — wired in flow_button_actions.sh (+ flow_launch_overrides.sh URLs)
 """
 from __future__ import annotations
 
@@ -25,12 +25,9 @@ from pathlib import Path
 DEFAULT_OPTIONS: dict[str, list[str]] = {
     "WORK": ["Ship feature", "Deep work sprint", "Close one task"],
     "COMMS": [
-        "Nekologic Main Comms",
-        "Airbnb",
-        "Gmail",
-        "Ace Consulting",
-        "LinkedIn Marketing Team",
-        "Discord General",
+        "Team Slack",
+        "Email",
+        "Notes",
     ],
     "CREATE": ["Draft concept", "Build prototype", "Polish output"],
     "CLEAN": [
@@ -40,14 +37,8 @@ DEFAULT_OPTIONS: dict[str, list[str]] = {
         "Clean Downloads",
         "Clean GDrive",
     ],
-    "BIZDEV": ["Open NekoCRM Asana", "Open GlobalCRM"],
-    "LEGAL": [
-        "Overview",
-        "TODO: Check contract dashboard",
-        "Staff",
-        "Clients",
-        "General",
-    ],
+    "BIZDEV": ["Open CRM", "Open pipeline board"],
+    "LEGAL": ["Overview", "Case review", "Staff", "Clients"],
     "HR": ["1:1 prep", "Hiring notes", "People follow-ups"],
     "FINANCE": ["Check runway", "Review spend", "Invoice pass"],
     "ADMIN": ["Calendar cleanup", "Docs update", "Ops checklist"],

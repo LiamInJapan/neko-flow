@@ -1,0 +1,14 @@
+# Private / machine-local — never commit your real workflow
+flow_modes.txt
+flow_button_actions.sh
+flow_launch_overrides.sh
+current_mode
+current_option
+flow_executed.json
+flow_firefox_window.json
+cursor-userdata/
+__pycache__/
+.venv/
+
+# Keep example-documents/ in repo templates only; live copy is local data
+example-documents/

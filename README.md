@@ -2,6 +2,20 @@
 
 Text-file-driven **focus modes** for Hyprland + Quickshell: cycle modes and substates, mark what you're doing, open notes, launch apps via contextual buttons.
 
+## Where is the code?
+
+**All implementation is in this repo** — see **[docs/LAYOUT.md](docs/LAYOUT.md)** for a map.
+
+| You want… | Look here |
+|-----------|-----------|
+| Parser, scripts, app launch logic | **`lib/`** |
+| Desktop widget UI | **`quickshell/`** |
+| Public config templates | **`config/*.example`** |
+| Demo notes for try-out install | **`config/documents/`** |
+
+After `./install.sh`, `lib/` is copied to `~/.local/share/neko-flow/lib/`.  
+Your **private** workflow stays in `~/.config/neko-flow/` (never committed to this repo).
+
 ## What it does
 
 - **Modes** (COMMS, WORK, CLEAN, …) defined in `flow_modes.txt`
@@ -20,23 +34,27 @@ Text-file-driven **focus modes** for Hyprland + Quickshell: cycle modes and subs
 ## Quick install
 
 ```bash
-git clone <your-repo-url> neko-flow
+git clone https://github.com/LiamInJapan/neko-flow.git
 cd neko-flow
 ./install.sh
 ```
 
+This creates `~/.config/neko-flow/` with **example modes, button map, and demo notes** — safe test data, not your real workflow.
+
 Then follow [docs/INTEGRATION.md](docs/INTEGRATION.md) for Hyprland keybinds and Quickshell widget copy.
 
-## Configuration
+## Private configuration
+
+These files are **gitignored** on your machine after install (see `config/gitignore`):
 
 | File | Purpose |
 |------|---------|
-| `~/.config/neko-flow/flow_modes.txt` | Modes, substates, `[ButtonId]` tags |
-| `~/.config/neko-flow/flow_button_actions.sh` | Map button IDs → slack / firefox / shell actions |
-| `~/.config/neko-flow/flow_launch_overrides.sh` | Private URLs, `NEKO_DOCUMENTS`, etc. |
-| `~/Documents/<MODE>.md` | Per-mode notes (optional) |
+| `flow_modes.txt` | Your modes and substates |
+| `flow_button_actions.sh` | Your button → URL/Slack mappings |
+| `flow_launch_overrides.sh` | Private URLs, `NEKO_DOCUMENTS`, etc. |
+| `current_mode`, `flow_executed.json`, … | Runtime state |
 
-See `config/*.example` for starters.
+Only `config/*.example` and `config/documents/` ship in the public repo.
 
 ## CLI
 
@@ -52,6 +70,8 @@ After install, these land in `~/.local/bin/`:
 | `neko-flow-open-notes` | Open mode note in Sublime |
 
 ## Development
+
+Open **`~/Development/neko-flow`** (or your clone) — you do **not** need your whole `~/.config` dotfiles repo.
 
 ```bash
 ./install.sh --dev --config-dir ~/.config/neko-flow

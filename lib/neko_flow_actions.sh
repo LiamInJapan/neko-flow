@@ -324,7 +324,7 @@ neko_slack_normalize_workspace_url() {
 launch_slack_general() {
   local hint="${1:-}"
   local wid fb norm="" _try slack_addrs_file act_url
-  fb="${NEKO_SLACK_FALLBACK_URL:-https://nekologic.slack.com/}"
+  fb="${NEKO_SLACK_FALLBACK_URL:-https://slack.com/signin}"
   [[ -n "$hint" ]] && norm="$(neko_slack_normalize_workspace_url "$hint")"
   [[ -n "$norm" ]] && fb="$norm"
   act_url=""
@@ -397,7 +397,7 @@ neko_dispatch_flow_button_spec() {
       launch_slack_general "${spec#slack:}"
       ;;
     slack)
-      launch_slack_general "nekologic"
+      launch_slack_general "${NEKO_SLACK_DEFAULT_WS:-}"
       ;;
     shell:*)
       bash -c "${spec#shell:}"

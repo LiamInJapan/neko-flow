@@ -16,6 +16,15 @@ Usage: install.sh [options]
   --dev              Symlink lib from repo instead of copying (for development)
   -h, --help         Show this help
 
+Fresh install bootstraps:
+  ~/.config/neko-flow/flow_modes.txt          (from *.example)
+  ~/.config/neko-flow/flow_button_actions.sh  (from *.example)
+  ~/.config/neko-flow/flow_launch_overrides.sh (demo NEKO_DOCUMENTS path)
+  ~/.config/neko-flow/example-documents/      (sample mode notes)
+  ~/.config/neko-flow/.gitignore              (keeps private config out of git)
+
+Your real workflow files are never part of the neko-flow git repo.
+
 After install:
   1. Append hypr/keybinds.snippet.conf to your Hyprland keybinds
   2. Copy quickshell/*.qml into your Quickshell tree (see docs/INTEGRATION.md)
@@ -55,6 +64,8 @@ else
 fi
 chmod +x "$INSTALL_DATA/lib"/*.sh 2>/dev/null || true
 
+install -m 644 "$REPO_ROOT/config/gitignore" "$CONFIG_DIR/.gitignore"
+
 install -m 644 "$REPO_ROOT/config/flow_modes.txt.example" "$CONFIG_DIR/flow_modes.txt.example"
 install -m 644 "$REPO_ROOT/config/flow_button_actions.sh.example" "$CONFIG_DIR/flow_button_actions.sh.example"
 install -m 644 "$REPO_ROOT/config/flow_launch_overrides.sh.example" "$CONFIG_DIR/flow_launch_overrides.sh.example"
@@ -71,6 +82,18 @@ do
     echo "Created $CONFIG_DIR/$dst from example"
   fi
 done
+
+mkdir -p "$CONFIG_DIR/example-documents"
+if [[ -d "$REPO_ROOT/config/documents" ]]; then
+  for doc in "$REPO_ROOT/config/documents/"*.md; do
+    [[ -f "$doc" ]] || continue
+    base="$(basename "$doc")"
+    if [[ ! -f "$CONFIG_DIR/example-documents/$base" ]]; then
+      cp "$doc" "$CONFIG_DIR/example-documents/$base"
+    fi
+  done
+  echo "Demo notes: $CONFIG_DIR/example-documents/"
+fi
 
 write_bin() {
   local name="$1"
@@ -95,7 +118,10 @@ write_bin neko-flow-open-notes open_flow_notes.sh
 echo ""
 echo "Installed Neko Flow"
 echo "  lib:    $INSTALL_DATA/lib"
-echo "  config: $CONFIG_DIR"
+echo "  config: $CONFIG_DIR  (private — see .gitignore)"
 echo "  bin:    $BIN_DIR/neko-flow-*"
+echo ""
+echo "Implementation lives in: $INSTALL_DATA/lib/"
+echo "Repo layout guide:       docs/LAYOUT.md"
 echo ""
 echo "Next: see docs/INTEGRATION.md for Hyprland + Quickshell setup."

@@ -1,9 +1,12 @@
 # Copy to ~/.config/neko-flow/flow_launch_overrides.sh and edit.
+# This file is private — install.sh never commits it.
 
-export NEKO_DOCUMENTS="$HOME/Documents"
+# Demo notes shipped with install live here until you point at ~/Documents:
+export NEKO_DOCUMENTS="${NEKO_DOCUMENTS:-$HOME/.config/neko-flow/example-documents}"
 
 # Slack workspace for [SlackMain] (subdomain or https://….slack.com)
 # export NEKO_SLACK_MAIN="your-workspace"
+# export NEKO_SLACK_DEFAULT_WS="your-workspace"
 
 # Button URLs
 # export NEKO_URL_PROJECT_BOARD="https://example.com/board"
