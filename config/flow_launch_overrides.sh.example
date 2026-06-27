@@ -1,0 +1,10 @@
+# Copy to ~/.config/neko-flow/flow_launch_overrides.sh and edit.
+
+export NEKO_DOCUMENTS="$HOME/Documents"
+
+# Slack workspace for [SlackMain] (subdomain or https://….slack.com)
+# export NEKO_SLACK_MAIN="your-workspace"
+
+# Button URLs
+# export NEKO_URL_PROJECT_BOARD="https://example.com/board"
+# export NEKO_FF_HYPR_WAIT=0.3

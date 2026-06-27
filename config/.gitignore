@@ -1,0 +1,8 @@
+current_mode
+current_option
+flow_executed.json
+flow_launch_overrides.sh
+flow_button_actions.sh
+flow_modes.txt
+__pycache__/
+.venv/

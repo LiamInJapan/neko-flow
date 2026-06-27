@@ -1,0 +1,38 @@
+# Neko Flow — example modes and substates.
+# Copy to ~/.config/neko-flow/flow_modes.txt and edit.
+#
+# Super+Alt+Left/Right  — cycle modes
+# Super+Alt+Up/Down     — cycle substates
+# Super+Alt+Return      — mark substate active + open mode note
+#
+# Substate line:  - Label - description [ButtonId]
+# Headers:        @ROUTINE @TASKS @INLINE @DESC
+
+[COMMS]
+@DESC Triage inboxes and messages before deep work.
+@ROUTINE Routine
+- Team Slack - Check mentions and threads [SlackMain]
+- Email - Triage inbox [GmailInbox]
+- Notes - Update notes below
+
+[WORK]
+@DESC Focused work on current projects.
+@ROUTINE Routine
+- Deep work - One task, no context switching
+- Project board - Review tasks [ProjectBoard]
+- Notes - Update notes below
+
+[CLEAN]
+@DESC Clear digital and physical clutter.
+@ROUTINE Routine
+- Clean Mail [GmailInbox]
+- Clean Desktop [Desktop]
+- Clean Downloads [Downloads]
+- Clean GDrive [GDrive]
+
+[CREATE]
+@DESC Prototype, build, polish side projects.
+@ROUTINE Routine
+- Notes - Capture ideas below
+
+@TASKS Tasks

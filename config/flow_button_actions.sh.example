@@ -1,0 +1,33 @@
+# Map [ButtonId] tags from flow_modes.txt → action specs.
+# Copy to ~/.config/neko-flow/flow_button_actions.sh and edit.
+# Set URLs in flow_launch_overrides.sh (see flow_launch_overrides.sh.example).
+
+neko_flow_button_spec() {
+  local id="$1"
+  case "$id" in
+    SlackMain)
+      # Default team: slack:your-workspace-subdomain or full https URL via NEKO_SLACK_MAIN
+      [[ -n "${NEKO_SLACK_MAIN:-}" ]] || return 1
+      printf 'slack:%s\n' "$NEKO_SLACK_MAIN"
+      ;;
+    GmailInbox)
+      printf 'firefox:%s\n' "${NEKO_URL_GMAIL:-https://mail.google.com/mail/u/0/#inbox}"
+      ;;
+    ProjectBoard)
+      [[ -n "${NEKO_URL_PROJECT_BOARD:-}" ]] || return 1
+      printf 'firefox:%s\n' "$NEKO_URL_PROJECT_BOARD"
+      ;;
+    GDrive)
+      printf 'firefox:%s\n' "${NEKO_URL_GDRIVE:-https://drive.google.com/}"
+      ;;
+    Desktop)
+      printf 'shell:xdg-open %q\n' "${NEKO_CLEAN_DESKTOP:-$HOME/Desktop}"
+      ;;
+    Downloads)
+      printf 'shell:xdg-open %q\n' "${NEKO_CLEAN_DOWNLOADS:-$HOME/Downloads}"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
